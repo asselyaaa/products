@@ -2,25 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserLoginForm;
+use App\Http\Requests\UserStoreForm;
 use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use JWTAuth;
 
 class UserController extends Controller
 {
-    public function register(Request $request)
+    public function register(UserStoreForm $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email|max:255|unique:users',
-            'name' => 'required',
-            'password'=> 'required|min:6'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors());
-        }
-
         $user = User::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
@@ -34,17 +24,8 @@ class UserController extends Controller
         return response()->json(compact('token', 'user'));
     }
 
-    public function login(Request $request)
+    public function login(UserLoginForm $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email|max:255',
-            'password'=> 'required|min:6'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors());
-        }
-
         $credentials = $request->only(['email', 'password']);
 
         if (!$token = auth()->attempt($credentials)) {
