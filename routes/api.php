@@ -25,3 +25,9 @@ Route::post('/categories', 'CategoryController@store');
 Route::post('/categories/{category}', 'CategoryController@update');
 Route::get('/categories/{category}', 'CategoryController@show');
 Route::delete('/categories/{category}', 'CategoryController@destroy');
+
+Route::get('/products', 'ProductController@index');
+Route::post('/products', 'ProductController@store');
+Route::post('/products/{product}', 'ProductController@update');
+Route::get('/products/{product}', 'ProductController@show');
+Route::delete('/products/{product}', 'ProductController@destroy');
