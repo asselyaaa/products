@@ -19,3 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/users/login', 'UserController@login');
 Route::post('/users/register', 'UserController@register');
+
+Route::get('/categories', 'CategoryController@index');
+Route::post('/categories', 'CategoryController@store');
+Route::post('/categories/{category}', 'CategoryController@update');
+Route::get('/categories/{category}', 'CategoryController@show');
+Route::delete('/categories/{category}', 'CategoryController@destroy');
