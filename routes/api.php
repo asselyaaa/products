@@ -31,3 +31,5 @@ Route::post('/products', 'ProductController@store');
 Route::post('/products/{product}', 'ProductController@update');
 Route::get('/products/{product}', 'ProductController@show');
 Route::delete('/products/{product}', 'ProductController@destroy');
+
+Route::get('/tags', 'TagController@index');

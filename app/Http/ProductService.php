@@ -28,6 +28,7 @@ class ProductService
         $priceFrom = $request->get('price_from') ?? 0;
         $priceTo = $request->get('price_to');
         $colors = $request->get('color');
+        $tags = $request->get('tags');
 
         $products = DB::table('products')
             ->join('product_categories', 'products.id', '=', 'product_categories.product_id')
@@ -41,6 +42,14 @@ class ProductService
         if ($colors) {
             $colorIds = explode(',', $colors);
             $products->whereIn('color_id', $colorIds);
+        }
+
+        if ($tags) {
+            $tags = explode(',', $tags);
+            $products->join('product_tags', 'products.id', '=', 'product_tags.product_id')
+                ->join('tags', 'tags.id', '=', 'product_tags.tag_id')
+                ->whereIn('product_tags.tag_id', $tags)
+                ->where('tags.category_id', $request->get('category_id'));
         }
 
         return $products->paginate($request->get('size') ?? 5);

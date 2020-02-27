@@ -29,7 +29,8 @@ class GetProductForm extends FormRequest
             'price_from' => 'nullable|integer',
             'price_to' => 'nullable|integer',
             'color' => 'nullable|string',
-            'weight' => 'nullable|integer'
+            'weight' => 'nullable|integer',
+            'tags' => 'nullable|string'
         ];
     }
 }
