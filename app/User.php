@@ -11,13 +11,23 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
+    const ROLE_ADMIN = 'admin';
+    const ROLE_USER = 'user';
+    const ROLE_MODERATOR = 'moderator';
+
+    public static $roles = [
+        self::ROLE_USER,
+        self::ROLE_MODERATOR,
+        self::ROLE_ADMIN
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role',
     ];
 
     /**
