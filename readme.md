@@ -13,3 +13,8 @@ DB_PASSWORD=[пароль]
 5) php artisan jwt:secret
 6) php artisan migrate:refresh --seed
 7) php artisan serve
+
+Примеры запросов:
+GET /api/categories
+GET /api/products?category_id=1&price_from=0&price_to=1000&color=1,3&tags=1,2
+GET /api/tags?category_id=1
