@@ -2,7 +2,7 @@ FROM php:7.1-fpm
 
 WORKDIR /var/www
 
-RUN docker-php-ext-install pdo pdo_mysql zip unzip
+RUN docker-php-ext-install pdo pdo_mysql zip
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- \
